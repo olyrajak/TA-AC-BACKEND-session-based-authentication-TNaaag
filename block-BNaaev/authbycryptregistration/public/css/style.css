@@ -10,6 +10,44 @@ body {
     background-color: #080710;
 }
 
+.container {
+    width: 1024px;
+    margin: 0 auto;
+    /* display: flex */
+}
+
+a {
+    color: rgb(0, 0, 78);
+    font-weight: bold;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+h1 {
+    font-size: 40px;
+    color: white;
+    margin: 20%;
+    text-align: center;
+}
+
+.flex {
+    background-color: lightblue;
+    padding: 30px;
+    margin: 10px
+}
+
+.btn {
+    text-align: center;
+    padding: 10px;
+    width: 20%
+}
+
+.btn-success {
+    text-align: center;
+    background: rgb(137, 221, 207);
+    box-shadow: 2px 2px 5px rgb(147, 243, 184);
+}
+
 .background {
     width: 430px;
     height: 520px;
