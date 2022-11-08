@@ -9,7 +9,7 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 app.use((req, res, next) => {
-    res.cookie("name", "Oly");
+    res.cookie("name", "Oly Rajak");
     next();
 });
 // view engine setup
