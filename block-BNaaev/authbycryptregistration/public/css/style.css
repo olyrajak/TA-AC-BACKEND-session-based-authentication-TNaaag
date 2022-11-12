@@ -77,8 +77,8 @@ h1 {
 }
 
 form {
-    height: 550px;
-    width: 400px;
+    height: 560px;
+    width: 420px;
     background-color: rgba(87, 128, 241, 0.205);
     position: absolute;
     transform: translate(-50%, -50%);
