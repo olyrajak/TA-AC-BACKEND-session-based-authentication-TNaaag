@@ -12,14 +12,20 @@ router.post("/", function(req, res, next) {
     const { email, password } = req.body;
 
     if (password.length <= 5) {
+
         req.flash("error", "Password must be at least 4 characters");
+
         return res.redirect("/register");
+
     }
 
     User.findOne({ email: email }, (err, user) => {
+
         if (err) return next(err);
         if (user) {
+
             req.flash("error", "Email already Exist!");
+
             return res.redirect("/register");
         } else {
             User.create(req.body, function(err, user) {
