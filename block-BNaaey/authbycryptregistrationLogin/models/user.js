@@ -5,7 +5,7 @@ var Schema = mongoose.Schema;
 
 var UserSchema = new Schema({
     name: { type: String, required: true },
-    username: { type: String, required: true, unique: true },
+    email: { type: String, required: true, unique: true },
     password: { type: String, minlength: 5, required: true },
 
 }, {
@@ -24,6 +24,11 @@ UserSchema.pre('save', function(next) {
         next();
     }
 });
+UserSchema.methods.verifyPassword = function(password, cb) {
+    bcrypt.compare(password, this.password, (err, result) => {
+        return cb(err, result);
+    });
+}
 var User = mongoose.model("User", UserSchema);
 
 module.exports = User;
