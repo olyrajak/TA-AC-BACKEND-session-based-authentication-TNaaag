@@ -8,7 +8,9 @@ var registerRouter = require('./routes/register');
 var loginRouter = require('./routes/login');
 var usersRouter = require('./routes/users');
 var mongoose = require("mongoose");
-
+var session = require("express-session");
+// var MongoStore = require('connect-mongo')(session);
+require('dotenv').config();
 var app = express();
 mongoose.connect("mongodb://localhost/UserLogin", {
     useNewUrlParser: true,
@@ -29,7 +31,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(session({
+    secret: process.env.SECRET,
+    resave: false,
+    saveUninitialized: false,
+    // store: new MongoStore({ mongooseConnection: mongoose.connection })
+}))
 app.use('/', indexRouter);
 
 app.use('/register', registerRouter);

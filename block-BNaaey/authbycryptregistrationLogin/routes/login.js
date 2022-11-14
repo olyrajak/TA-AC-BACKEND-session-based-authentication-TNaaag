@@ -8,20 +8,26 @@ router.get('/', function(req, res, next) {
 });
 router.post('/', function(req, res, next) {
     var { email, password } = req.body;
-    console.log(email, password);
     if (!email || !password) {
         res.render('login', { title: 'Login' });
     }
-    User.findOne({ email }, (err, users) => {
-        console.log(err, users);
+    User.findOne({ email }, (err, user) => {
         if (err) return next(err);
-        if (!users) {
-            res.render('login', { title: 'Login' });
 
+        if (!user) {
+            res.render('login', { title: 'Login' });
         }
-        users.verifyPassword(password, (err, result) => {
-            console.log(err, result);
+        user.verifyPassword(password, (err, result) => {
+            if (err) return next(err);
+            if (!result) {
+                res.render('login', { title: 'Login' });
+            }
+            req.session.UserId = user.id;
+            res.redirect("/users")
+
         })
+
+
     })
 
 });
