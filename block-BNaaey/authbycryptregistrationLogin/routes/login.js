@@ -13,7 +13,7 @@ router.post('/', function(req, res, next) {
         res.render('login', { title: 'Login' });
     }
     User.findOne({ email }, (err, users) => {
-
+        console.log(err, users);
         if (err) return next(err);
         if (!users) {
             res.render('login', { title: 'Login' });
